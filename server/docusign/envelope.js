@@ -1,3 +1,5 @@
+const eSignSdk = require('docusign-esign');
+
 /**
  * Sends an envelope using the Envelopes::create API method.
  * 
@@ -9,8 +11,23 @@
  * @returns {Promise<string>} - A promise that resolves with the envelopeId.
  */
 const sendEnvelope = async (envelopeDefinition, args) => {
-  
-  return null;
+  // Create API client to call
+  let eSignApi = new eSignSdk.ApiClient();
+  eSignApi.setBasePath(args.basePath);
+  eSignApi.addDefaultHeader('Authorization', 'Bearer ' + args.accessToken);
+  let envelopesApi = new eSignSdk.EnvelopesApi(eSignApi);
+  let results = null;
+
+  // Call Envelopes::create API method
+  // Exceptions will be caught by the calling function
+  results = await envelopesApi.createEnvelope(args.accountId, {
+    envelopeDefinition: envelopeDefinition,
+  });
+
+  let envelopeId = results.envelopeId;
+  console.log(`Envelope was created. EnvelopeId ${envelopeId}`);
+
+  return envelopeId;
 };
 
 /**
@@ -27,9 +44,34 @@ const sendEnvelope = async (envelopeDefinition, args) => {
  */
 
 const getSenderViewURL = async (envelopeId, args) => {
-  
+  let eSignApi = new eSignSdk.ApiClient();
+  eSignApi.setBasePath(args.basePath);
+  eSignApi.addDefaultHeader('Authorization', 'Bearer ' + args.accessToken);
+  let envelopesApi = new eSignSdk.EnvelopesApi(eSignApi);
 
-  return null;
+  const viewRequest = new eSignSdk.EnvelopeViewRequest.constructFromObject({
+    returnUrl: args.envelopeArgs.dsReturnUrl,
+    viewAccess: 'envelope',
+    settings: new eSignSdk.EnvelopeViewSettings.constructFromObject({
+      startingScreen: 'Tagger',
+      sendButtonAction: 'send',
+      showBackButton: 'false',
+      backButtonAction: 'previousPage',
+      showHeaderActions: 'false',
+      showDiscardAction: 'false',
+      lockToken: ''
+    })
+  });
+
+  let senderView = await envelopesApi.createSenderView(
+    args.accountId,
+    envelopeId,
+    {
+      envelopeViewRequest: viewRequest,
+    }
+  );
+
+  return senderView.url;
 };
 
 /**
@@ -38,7 +80,21 @@ const getSenderViewURL = async (envelopeId, args) => {
  * @returns {Promise<Array<eSignSdk.EnvelopeSummary>>} - A promise that resolves with an array of envelope summaries.
  */
 const getEnvelopesList = async (args) => {
-  return null;
+  let eSignApi = new eSignSdk.ApiClient();
+  eSignApi.setBasePath(args.basePath);
+  eSignApi.addDefaultHeader('Authorization', 'Bearer ' + args.accessToken);
+  let envelopesApi = new eSignSdk.EnvelopesApi(eSignApi);
+  const options = {
+    fromDate: "2024-01-01T00:00:00Z",
+    status: "sent",
+  };
+  try {
+    const envelopes = await envelopesApi.listStatusChanges(process.env.API_ACCOUNT_ID, options);
+    console.log("Envelopes retrieved:", envelopes.envelopes);
+    return envelopes.envelopes;
+  } catch (error) {
+    console.error("Error fetching envelopes:", error);
+  }
 }
 
 module.exports = {
