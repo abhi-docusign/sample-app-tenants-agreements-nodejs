@@ -1,0 +1,82 @@
+{
+  "pageNotFound": {
+    "title": "404: Page not found"
+  },
+  "formLabels": {
+    "firstName": "First name:",
+    "lastName": "Last name:",
+    "uploadFile": "Upload File:",
+    "officerNameLabel": "Officer name:",
+    "email": "Email:",
+    "countryCode": "Country code:",
+    "phoneNumber": "Officer phone number:",
+    "phonePlaceholder": "4155551212",
+    "requiredFieldError": "This field is required.",
+    "inputTooLongError": "Your input is too long.",
+    "invalidEmailFormatError": "Invalid email format.",
+    "invalidCountryCodeError": "Invalid country code.",
+    "invalidPhoneNumberError": "Invalid phone number.",
+    "buttonName": "Submit",
+    "submittedButtonName": "Submitting...",
+    "cancelButtonName": "Cancel",
+    "moreInfoName": "More info"
+  },
+  "header": {
+    "githubButton": "GitHub Source",
+    "githubLink": "https://github.com/abhi-docusign/sample-app-tenants-agreements-nodejs"
+  },
+  "footer": {
+    "copyright": "© 2024 Docusign Inc.",
+    "title": "Docusign: It's time to agree better",
+    "description": "Docusign helps organizations connect and automate how they prepare, sign, act on, and manage agreements.",
+    "getFreeLinkName": "Create Developer Account",
+    "getFreeLink": "https://go.docusign.com/o/sandbox/?ga=2.70927056.1363819232.1590515244-192278368.1546193875&ECID=20890&elqCampaignId=20890&LS=NA_DEV_BOTH_BetaSite_2020-05&utm_campaign=NA_DEV_BOTH_BetaSite_2020-05&Channel=DDCUS000016968056&cName=DocuSign.com&postActivateUrl=https://developers.docusign.com/",
+    "learnMoreName": "Learn More",
+    "learnMoreLink": "https://developers.docusign.com/"
+  },
+  "home": {
+    "title": "Welcome to Tenants Agreement",
+    "viewDocuments": "View Sent Agreements",
+    "sendAgreements": "Send Agreement",
+    "viewDocumentsFeatures": "<li>Webhooks (Comming Soon)</li>",
+    "sendAgreementsFeatures": "<li>Sender View</li><li>Remote signing</li>"
+  },
+  "login": {
+    "title": "Welcome to the Tenants Agreements Sample Application",
+    "description": "This is a sample app for setting up the complete integration guide.",
+    "loginButton": "Login uisng JWT with Docusign",
+    "moreInfoButton": "More Info",
+    "logoutButton": "Logout"
+  },
+  "viewDocuments": {
+    "title": "View Documents"
+  },
+  "sendAgreements": {
+    "title": "Send Agreements for Signature",
+    "names": {
+      "userRoleName": "Tenant"
+    },
+    "envelope": {
+      "docName": "Agreement",
+      "emailSubject": "Please complete the following agreement"
+    }
+  },
+  "success": {
+    "title": "Successfully sent request",
+    "description": "Your request for signing a document has been sent to the specified email.",
+    "backLink": "Back to Home"
+  },
+  "behindTheScenes": {
+    "title": "See behind the scenes",
+    "login": {
+      "title": "Login code flow",
+      "description": "Selecting <b>Try the App</b> logs the user in using <a href=\"https://developers.docusign.com/platform/auth/jwt/\" target=\"_blank\" rel=\"noopener noreferrer\">JSON Web Token (JWT)</a> Grant authentication, which is one of the OAuth 2.0 flows that Docusign APIs support. For more information about which OAuth flow your application should use, see the <a href=\"https://developers.docusign.com/platform/auth/choose/\" target=\"_blank\" rel=\"noopener noreferrer\">Developer Center</a>.<br></br><b>Note:</b> Every user of this sample application is logged in using the same account to simplify hosting. However, if you are running this application locally, you must use your own <a href=\"https://go.docusign.com/o/sandbox/?ga=2.70927056.1363819232.1590515244-192278368.1546193875&ECID=20890&elqCampaignId=20890&LS=NA_DEV_BOTH_BetaSite_2020-05&utm_campaign=NA_DEV_BOTH_BetaSite_2020-05&Channel=DDCUS000016968056&cName=DocuSign.com&postActivateUrl=https://developers.docusign.com/\" target=\"_blank\" rel=\"noopener noreferrer\">developer account</a>.<h2>Code flow:</h2>See the <a href=\"https://github.com/docusign/sample-app-mygovernment-nodejs/blob/master/server/controllers/jwtController.js\" target=\"_blank\" rel=\"noopener noreferrer\">source code</a> for this flow.<h3>Step 1</h3>If the user hasn't yet provided consent for the application to impersonate them, create the consent URI and have the user provide consent; then <a href=\"https://developers.docusign.com/platform/auth/jwt/jwt-get-token/\" target=\"_blank\" rel=\"noopener noreferrer\">obtain the JWT token</a> with the scopes that the application requires.<h3>Step 2</h3>Using the JWT, obtain and store the access token that will be used to make future API calls.<h3>Step 3</h3>Using the access token, use the <a href=\"https://developers.docusign.com/platform/auth/reference/user-info/\" target=\"_blank\" rel=\"noopener noreferrer\">/oauth/userinfo API endpoint</a> to get and store the user's base URI and account ID, which are also needed to make API calls."
+    },
+    "viewDocuments": {
+      "description": ""
+    },
+    "sendAgreements": {
+      "description": ""
+    }
+  }
+}
